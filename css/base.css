@@ -125,27 +125,34 @@ header{
 
 
 .hamburgare{
-    width:2rem;
-    height:2rem;
+    width:3.5rem;
+    height:3.5rem;
     
 
     
     display:flex;
     flex-direction:column; 
     
-    gap:0.3rem;
+    gap:0.5rem;
     
     align-self:center;
     
 
     /*decor*/ 
-    
+    background-color:inherit;
+    border:0px;
     
     
     
     
     
 }
+.hamburgare{
+    @media (min-width:860px){
+        display:none;
+    }
+}
+
 .hamburgare div{
     height:0.3rem;
     /*Creating a var for the hamburger menu */ 
