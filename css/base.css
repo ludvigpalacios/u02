@@ -392,6 +392,13 @@ header{
 
 }
 
+/* Visa tydligt var användaren ligger i vid navigering med tangentbord */
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid #13b0f5;
+  outline-offset: 2px;
+}
+
 /*Media query när man ökar width: */ 
 @media (min-width:600px){
     .intro{
