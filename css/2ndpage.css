@@ -8,6 +8,8 @@
     /*Adjusting initial margin */
     margin:0px 0.5rem; 
 
+
+
 }
 
 @media (min-width:600px){
@@ -80,6 +82,42 @@
     
     background-color: rgb(198, 198, 198);
 }
+
+
+.job{
+    h3{
+        font-size:1rem;
+        font-weight:400;
+    }
+}
+
+.Company{
+   grid-area: company;
+}
+.location-description{
+    grid-area:location-description;
+}
+.Right-side{
+    grid-area:time; 
+}
+.job-description{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    grid-template-areas:
+    "company location-description 1 time";
+
+    /*decor*/
+    padding:0;
+
+    
+    li{
+        list-style: none;
+    }
+}
+
+
+
 
 
 
