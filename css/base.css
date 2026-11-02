@@ -38,6 +38,7 @@ html{
     .twitter>*, .linkedin>*>*, .github>*{
         fill:var(--hamburger-icons);
     }
+
 }
 
 
@@ -60,19 +61,25 @@ main{
     justify-content:center;
 }
 
+section{
+    min-height: 100vh;
+}
+
 header{
     /*We need 3 columns */ 
     box-sizing: border-box;
     display:flex;
     flex-direction: column;
     flex-wrap:wrap;
-    margin:46px 5%;
+    padding:46px 5%;
     gap:1rem;
-    
+
+    position: sticky; top: 0;    
+    background-color:var(--background);
     /*Setting up a media query to change the fle direction to row when there's enough space */
     
     @media (min-width:860px){
-        margin:46px 10%;
+        padding:46px 10%;
         flex-direction:row; 
         flex-wrap:nowrap; 
         
@@ -417,7 +424,11 @@ header{
        
     }
 
-    h2{
+    
+    h1{
+        font-size:3rem;
+    }
+    h1, h2{
         /*Replace the color to a variable set that changes dending if set on lightmode/darkmode*/
         color:var(--muted-header2);
     }

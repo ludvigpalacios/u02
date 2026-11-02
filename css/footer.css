@@ -3,6 +3,8 @@ footer{
     box-sizing: border-box;
     display:flex;
     flex-direction: column;
+    min-height: 100vh;
+    justify-content:center;
 }
 
 .footer-text{
@@ -13,6 +15,7 @@ footer{
 
     margin-top:10rem;
     margin-bottom:10rem;
+    font-size:1.5rem;
     
 
     .footer-question-text{
