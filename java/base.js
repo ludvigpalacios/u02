@@ -1,7 +1,7 @@
 //Import functions
 import { fetchData} from "./fetchJSON.js";
 import {replaceChild} from "./replaceChild.js";
-import { generateCards } from './domUTILS.js';
+import { generateCards, generateProjectTiles} from './domUTILS.js';
 
 let isHidden=false;
 /*We want to have the menu hidden by default, but remove the class once we click the hamburger icon */
@@ -87,6 +87,8 @@ fetchData(gitHubURL)
     if(workAndEducation){
         //Start function
         console.log(workAndEducation)
+        generateProjectTiles(workAndEducation);
+
     }
 }).catch(error =>{
     //Den här koden körs om det kastas ett fel

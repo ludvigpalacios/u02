@@ -104,7 +104,7 @@ export function generateProjectTiles(githubArray) {
 
         // Räkna ut ett nummer mellan 1 och 3 baserat på vilket varv vi är på (i)
         // Varv 0 blir bild 1, varv 1 blir bild 2, varv 2 blir bild 3, varv 3 blir bild 1 osv.
-        const bgNumber = i + 1; 
+        const bgNumber = (i % 6) + 1; 
 
         // 4. Klistra in din exakta HTML-struktur inuti backticks
         article.innerHTML = `
