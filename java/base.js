@@ -56,6 +56,16 @@ fetchWorkAndEducationWithThen()
         replaceChild(workAndEducation);
         //console.log(workAndEducation.work[0].companyname)
     }
+}).catch(error =>{
+    //Den här koden körs om det kastas ett fel
+    console.log("Ett fel uppstod:", error);
+    //Hämta iframe från HTML
+    const errorIframe=document.getElementById("error-popup");
+
+    if(errorIframe){
+        //gör iframe synligt
+        errorIframe.style.display = "block";
+    }
 });
 
 //Function that inputs the jobTitle, CompanyName, location, date and fullTime
