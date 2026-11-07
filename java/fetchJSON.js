@@ -1,0 +1,41 @@
+
+
+export async function fetchWorkAndEducation(){
+    try{
+        const fetchResponse = await fetch('./json/workEducation.json');
+        //Check if the response is alright
+        if(!fetchResponse.ok){
+            throw new Error (`HTTP-fel! Status: ${response.status}`);
+
+        }
+        const data= await fetchResponse.json();
+        return data; 
+    }catch(error){
+        console.log("an error has occured!", error);
+    }
+}
+
+//another way of fetching the json
+
+export function fetchWorkAndEducationWithThen(){
+
+    return fetch("./json/workEducation.json")
+    .then(response => {
+        if(!response.ok){
+            throw new Error(`HTTP-fel! Status: ${response.status}`);
+        }
+        return response.json();
+        //den returnerar en promise, när man importerar detta behöver man använda .then 
+    })
+    .then(data => {
+        //console.log(data); //Här har du din data
+        return data;
+    })
+    .catch(error => {
+        console.log("An error har ocurred:", error);
+        return null;
+    });
+    //Den returnernar
+}
+
+
