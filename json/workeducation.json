@@ -1,28 +1,28 @@
 {
   "work": [
     {
-      "job title": "Servicetekniker",
+      "jobtitle": "Servicetekniker",
       "companyname": "Exempel Fordon AB",
       "location": "Stockholm, Sverige",
-      "date": "2024-06 - nu",
+      "date": "2024-06 - 2026-11-05",
       "fulltime": true
     },
     {
-      "job title": "Underhållstekniker järnväg",
+      "jobtitle": "Underhållstekniker järnväg",
       "companyname": "Spårservice Nord AB",
       "location": "Solna, Sverige",
       "date": "2023-01 - 2024-05",
       "fulltime": true
     },
     {
-      "job title": "Laboratorieassistent",
+      "jobtitle": "Laboratorieassistent",
       "companyname": "Bränsle och Miljö Labb AB",
       "location": "Södertälje, Sverige",
       "date": "2022-06 - 2022-12",
       "fulltime": false
     },
     {
-      "job title": "Butiksbiträde",
+      "jobtitle": "Butiksbiträde",
       "companyname": "Stadens Livs AB",
       "location": "Stockholm, Sverige",
       "date": "2020-08 - 2022-05",
@@ -31,14 +31,14 @@
   ],
   "education": [
     {
-      "job title": "Mobilitetstekniker hållbara drivmedel",
+      "jobtitle": "Mobilitetstekniker hållbara drivmedel",
       "companyname": "Exempel Yrkeshögskola",
       "location": "Stockholm, Sverige",
       "date": "2025-08 - 2027-06",
       "fulltime": true
     },
     {
-      "job title": "Naturvetenskapliga programmet",
+      "jobtitle": "Naturvetenskapliga programmet",
       "companyname": "Exempel Gymnasium",
       "location": "Stockholm, Sverige",
       "date": "2017-08 - 2020-06",
