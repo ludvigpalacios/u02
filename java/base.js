@@ -1,6 +1,7 @@
 //Import functions
 import { fetchWorkAndEducation, fetchWorkAndEducationWithThen} from "./fetchJSON.js";
 import {replaceChild} from "./replaceChild.js";
+import { generateWorkCards } from './domUTILS.js';
 
 let isHidden=false;
 /*We want to have the menu hidden by default, but remove the class once we click the hamburger icon */
