@@ -1,7 +1,7 @@
 //Import functions
 import { fetchWorkAndEducation, fetchWorkAndEducationWithThen} from "./fetchJSON.js";
 import {replaceChild} from "./replaceChild.js";
-import { generateWorkCards } from './domUTILS.js';
+import { generateCards } from './domUTILS.js';
 
 let isHidden=false;
 /*We want to have the menu hidden by default, but remove the class once we click the hamburger icon */
@@ -57,8 +57,14 @@ fetchWorkAndEducationWithThen()
 .then(workAndEducation =>{
     if(workAndEducation){
         //Start function
-        replaceChild(workAndEducation, elements);
+        //replaceChild(workAndEducation, elements);
         //console.log(workAndEducation.work[0].companyname)
+
+        //Bygg jobben i jobb-container
+        generateCards(workAndEducation.work, "work-experience-container");
+
+        //Bygg utbildningar i utbildnings-container!
+        generateCards(workAndEducation.education, "education-container");
     }
 }).catch(error =>{
     //Den här koden körs om det kastas ett fel
