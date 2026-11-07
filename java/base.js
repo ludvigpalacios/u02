@@ -1,6 +1,6 @@
 //Import functions
 import { fetchWorkAndEducation, fetchWorkAndEducationWithThen} from "./fetchJSON.js";
-//import {replaceChild} from "./replaceChild.js";
+import {replaceChild} from "./replaceChild.js";
 
 let isHidden=false;
 /*We want to have the menu hidden by default, but remove the class once we click the hamburger icon */
@@ -9,11 +9,14 @@ const grabHidden=document.querySelectorAll(".hidden");
 const grabHamburgers=document.querySelectorAll(".hamburgare");
 
 //
-const jobTitle= document.querySelectorAll("#jobTitle");
-const isFullTime= document.querySelectorAll("#isFullTime");
-const companyName= document.querySelectorAll("#companyName");
-const locationName= document.querySelectorAll("#locationName");
-const workDate = document.querySelectorAll("#workDate");
+const elements = {
+    jobTitle: document.querySelectorAll("#jobTitle"),
+    isFullTime: document.querySelectorAll("#isFullTime"),
+    companyName:  document.querySelectorAll("#companyName"),
+    locationName: document.querySelectorAll("#locationName"),
+    workDate: document.querySelectorAll("#workDate"),
+ 
+};
 
 
 
