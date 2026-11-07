@@ -83,3 +83,56 @@ export function generateCards(dataArray, containerId) {
         container.appendChild(article);
     });
 }
+
+//project cards
+
+export function generateProjectTiles(githubArray) {
+    // 1. Hämta din huvudbehållare från HTML
+    const container = document.querySelector(".project-tiles");
+    if (!container) return;
+
+    // Rensa behållaren från dina hårdkodade testkort
+    container.innerHTML = "";
+
+    // 2. Loopa igenom alla 13 objekt med map, object deconstructing används för att hämta name html och description för varje object
+    // Vi plockar ut 'i' (indexet) också för att kunna skifta bakgrundsbilder!
+    githubArray.map(({ name, html_url, description }, i) => {
+        
+        // 3. Skapa själva kortet (<article class="project-tile">)
+        const article = document.createElement("article");
+        article.classList.add("project-tile");
+
+        // Räkna ut ett nummer mellan 1 och 3 baserat på vilket varv vi är på (i)
+        // Varv 0 blir bild 1, varv 1 blir bild 2, varv 2 blir bild 3, varv 3 blir bild 1 osv.
+        const bgNumber = i + 1; 
+
+        // 4. Klistra in din exakta HTML-struktur inuti backticks
+        article.innerHTML = `
+            <img class="background-image" src="svg/background-images/background${bgNumber}.svg" alt="background image">
+            <div class="tile-description">
+                <h3>${name}</h3>
+                <p>${description || "This is a sample project description. No description was provided on GitHub."}</p>
+                
+                <span>Tech stack:
+                    <span>HTML, JavaScript, CSS</span> 
+                </span>
+                
+                <nav class="tile-navigation">
+                    <a href="#A">
+                        <img class="chain-icon" alt="chain icon" src="svg/chain-icon.svg">
+                        Live Preview
+                    </a>
+                    
+                    <!-- Här sätter vi in din dynamiska html_url länk till GitHub -->
+                    <a href="${html_url}" target="_blank">
+                        <img class="tile-github-icon" alt="github icon" src="svg/github.svg">
+                        View Code
+                    </a>
+                </nav>
+            </div>
+        `;
+
+        // 5. Skjut in det färdiga kortet i din behållare på skärmen
+        container.appendChild(article);
+    });
+}
