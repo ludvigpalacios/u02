@@ -17,9 +17,9 @@ export async function fetchWorkAndEducation(){
 
 //another way of fetching the json
 
-export function fetchWorkAndEducationWithThen(){
+export function fetchData(URL){
 
-    return fetch("./json/workEducation.json")
+    return fetch(URL)
     .then(response => {
         if(!response.ok){
             throw new Error(`HTTP-fel! Status: ${response.status}`);

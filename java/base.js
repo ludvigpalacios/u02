@@ -1,5 +1,5 @@
 //Import functions
-import { fetchWorkAndEducation, fetchWorkAndEducationWithThen} from "./fetchJSON.js";
+import { fetchData} from "./fetchJSON.js";
 import {replaceChild} from "./replaceChild.js";
 import { generateCards } from './domUTILS.js';
 
@@ -52,8 +52,9 @@ function removeHidden(){
 }
 
 //Unpack the promise 
+const workEduURL = "./json/workEducation.json";
 
-fetchWorkAndEducationWithThen() 
+fetchData(workEduURL) 
 .then(workAndEducation =>{
     if(workAndEducation){
         //Start function
@@ -78,6 +79,26 @@ fetchWorkAndEducationWithThen()
     }
 });
 
+
+//Project cards
+const gitHubURL="https://api.github.com/users/ludvigpalacios/repos";
+fetchData(gitHubURL) 
+.then(workAndEducation =>{
+    if(workAndEducation){
+        //Start function
+        console.log(workAndEducation)
+    }
+}).catch(error =>{
+    //Den här koden körs om det kastas ett fel
+    console.log("Ett fel uppstod:", error);
+    //Hämta iframe från HTML
+    const errorIframe=document.getElementById("error-popup");
+
+    if(errorIframe){
+        //gör iframe synligt
+        errorIframe.style.display = "block";
+    }
+});
 
 
 
