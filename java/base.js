@@ -2,6 +2,7 @@
 import { fetchData} from "./fetchJSON.js";
 import {replaceChild} from "./replaceChild.js";
 import { generateCards, generateProjectTiles} from './domUTILS.js';
+import {toggleDarkMode} from "./darkMode.js";
 
 let isHidden=false;
 /*We want to have the menu hidden by default, but remove the class once we click the hamburger icon */
@@ -101,6 +102,19 @@ fetchData(gitHubURL)
         errorIframe.style.display = "block";
     }
 });
+
+/*
+const themeToggleBtn = document.getElementById('theme-toggle');
+const themeIcon = themeToggleBtn.querySelector('.theme-icon');
+
+themeToggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    themeIcon.textContent = isDarkMode ? '🌙' : '☀️';
+});*/
+
+toggleDarkMode();
 
 
 

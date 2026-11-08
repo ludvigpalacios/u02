@@ -144,18 +144,18 @@
     justify-content: space-between;
 }
 /*Alternate method for black and white icons, using filter and invert */
-@media(prefers-color-scheme: dark){
-    .chain-icon,.tile-github-icon{
-        filter: invert(1);
-    }
-    .project-tile{
-        background-color: #363636;
-        color:#CCCCCC;
-        span{    
-        color:#7C7CB6;
-        }
-    }
+:root[data-theme="dark"] .chain-icon,
+:root[data-theme="dark"] .tile-github-icon {
+  filter: invert(1);
 }
+:root[data-theme="dark"] .project-tile {
+  background-color: #363636;
+  color: #CCCCCC;
+}
+:root[data-theme="dark"] .project-tile span {
+  color: #7C7CB6;
+}
+
 
 .tile-navigation a{
     margin-top:1rem;

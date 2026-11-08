@@ -42,11 +42,17 @@ footer{
             display:none;
         }
     }
-    @media(prefers-color-scheme: dark){
+    /* @media(prefers-color-scheme: dark){
         color:#937EF1;
         .footer-question-text, .footer-or-text{
             color:#937EF1;
         }
-    }
+    } */
     
+    
+}
+:root[data-theme="dark"] .footer-text,
+:root[data-theme="dark"] .footer-question-text, 
+:root[data-theme="dark"] .footer-or-text {
+  color: #937EF1;
 }

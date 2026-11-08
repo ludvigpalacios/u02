@@ -57,11 +57,11 @@
     align-self:center;
 }
 
-@media (prefers-color-scheme: dark){
-    /*When dark, change the color within WCAG */ 
-    .Left-side svg,.Left-side svg>*, .Right-side svg{
-        fill:#FFFFFF;
-    }
+
+:root[data-theme="dark"] .Left-side svg,
+:root[data-theme="dark"] .Left-side svg > *, 
+:root[data-theme="dark"] .Right-side svg {
+  fill: #FFFFFF;
 }
 
 .job-description, .location-description {

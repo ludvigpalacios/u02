@@ -25,22 +25,6 @@ html{
 
 }
 
-@media (prefers-color-scheme: dark) { /*When the user has dark mode, change the global variables values */ 
-  :root {
-    --background: #121212;
-    --text: #f1f1f1;
-    --muted-text: #D6D6D6;
-    /*Change the headers color */
-    --muted-header2: #D9D9D9;
-    --hamburger:#969696;
-    --hamburger-icons:#969696;
-  }
-    .twitter>*, .linkedin>*>*, .github>*{
-        fill:var(--hamburger-icons);
-    }
-
-}
-
 
 body{
     font-family:"Poppins",sans-serif;
@@ -48,12 +32,21 @@ body{
     /*Adding dark mode */
     background-color: var(--background); /*Setting the background to the varible background */
     color: var(--text); /*Setting the text color to the variable text in root */
-
-    
-    
     
 
 }
+:root[data-theme="dark"] {
+  --background: #121212;
+  --text: #f1f1f1;
+  --muted-text: #D6D6D6;
+  --muted-header2: #D9D9D9;
+  --hamburger: #969696;
+  --hamburger-icons: #969696;
+  .twitter>*, .linkedin>*>*, .github>*{
+        fill:var(--hamburger-icons);
+    }
+}
+
 main{
     box-sizing: border-box;
     display:flex;

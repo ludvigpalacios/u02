@@ -71,11 +71,9 @@
 
 }
 /* Change this variable colors to white within a media query set for darkmode */ 
-@media (prefers-color-scheme: dark){
-    :root{
-        --icon-color: #ffffff;
-    }
-    
+:root[data-theme="dark"] {
+    --icon-color: #ffffff;
+
 }
 /*set fill color for svg github and greensock*/
 .github-icon, .greensock-icon{
