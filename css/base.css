@@ -305,6 +305,7 @@ header{
     flex-direction: column;
     margin:0px 0.5rem; 
     margin-top:10rem;
+    gap:2rem;
 
 }
 
@@ -336,8 +337,8 @@ header{
     
 
     /*decor*/
-    height:10.5rem;
-    width:10.5rem;
+    height:16rem;
+    width:16rem;
     background-image: linear-gradient(to top, #13B0F5, #CA24B4);
     
     /* 2. Klipp bakgrunden så att den bara visas där texten är */
@@ -353,8 +354,8 @@ header{
 }
 
 .ludvig{
-    height:10rem;
-    width:10rem;
+    height:15rem;
+    width:15rem;
     border-radius: 50%;
     
 }
