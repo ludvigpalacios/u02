@@ -45,6 +45,7 @@ body{
   .twitter>*, .linkedin>*>*, .github>*{
         fill:var(--hamburger-icons);
     }
+
 }
 
 main{
@@ -391,6 +392,19 @@ a:focus-visible {
   outline: 3px solid #13b0f5;
   outline-offset: 2px;
 }
+.theme-toggle{
+    width:3rem;
+    height:3rem;
+    align-self:center;
+    background-color:inherit;
+    border: 2px red;
+    border-radius: 40%;
+    
+    background-color: var(--text);
+}
+.theme-toggle:hover{
+    background-color: var(--background);
+}
 
 /*Media query när man ökar width: */ 
 @media (min-width:600px){
@@ -432,6 +446,10 @@ a:focus-visible {
         /*Replace the color to a variable set that changes dending if set on lightmode/darkmode*/
         color:var(--muted-header2);
     }
+    .theme-toggle{
+        margin-left:2rem;
+
+    }
 
 
 
@@ -449,6 +467,11 @@ a:focus-visible {
             height:16.5rem;
             width:16.5rem;
         }
+
+    }
+    .theme-toggle{
+        margin-left:4rem;
+        
 
     }
        
