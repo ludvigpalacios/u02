@@ -1,27 +1,27 @@
 # u01-ludvig
 
-[![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](#)
-[![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)](#)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](#)
-[![Netlify](https://img.shields.io/badge/Deployed%20on-Netlify-00C7B7?logo=netlify&logoColor=white)](https://u01-ludvig-portfolio.netlify.app/)
+[![HTML5](https://shields.io)](#)
+[![CSS3](https://shields.io)](#)
+[![JavaScript](https://shields.io)](#)
+[![Netlify](https://shields.io)](https://netlify.app)
 
-**Live-sida:** [https://u01-ludvig-portfolio.netlify.app/](https://u01-ludvig-portfolio.netlify.app/)
+**Live-sida:** [https://netlify.app](https://netlify.app)
 
-https://ludvigpalacios.github.io/u01-ludvig/
-<img width="1767" height="891" alt="image" src="https://github.com/user-attachments/assets/7d059c5a-dbaa-4208-9cc9-18f2043c1bf8" />
+https://github.io
+<img width="1767" height="891" alt="image" src="https://github.com" />
 
-
-En responsiv portfolio-webbplats byggd med HTML, CSS och JavaScript. Projektet är en översättning av en designskiss till kod, med fokus på layout, dark mode, tillgänglighet och anpassning för olika skärmstorlekar.
+En responsiv och dynamisk portfolio-webbplats byggd med HTML, CSS och modern JavaScript (ES2024). Projektet är en översättning av en designskiss till kod, med stort fokus på modulär kodstruktur, mörkt läge, tillgänglighet (WCAG) och robust felhantering.
 
 ```mermaid
 flowchart LR
     A[Designskiss] --> B[HTML-struktur]
     B --> C[CSS-layout]
     C --> D[Responsiv design]
-    D --> E[Tillgänglighet]
-    E --> F[Dark mode]
-    F --> G[Test och validering]
-    G --> H[Publicering på Netlify]
+    D --> E[Tillgänglighet & WCAG]
+    E --> F[Dynamisk data & Moduler]
+    F --> G[Dark mode med Toggle]
+    G --> H[Test och validering]
+    H --> I[Publicering på Netlify]
 ```
 
 ## Innehåll
@@ -34,32 +34,29 @@ flowchart LR
 - [Dark mode](#dark-mode)
 - [Tillgänglighet](#tillgänglighet)
 - [Reflektion](#reflektion)
-- [Vad jag skulle förbättra](#vad-jag-skulle-förbättra)
 
 ---
 
 ## Om projektet
 
-Portfolio-sidan består av flera sektioner: en introduktion med profilbild, en sida med arbetsbeskrivningar och ikoner, en teknologisektion med SVG-ikoner samt en projektsida med kort som visar projekt, beskrivningar och länkar.
+Portfolio-sidan består av flera sektioner: en introduktion med profilbild, en CV-sida med dynamiskt genererade arbetsbeskrivningar och utbildningar, en teknologisektion med optimerade SVG-ikoner samt en projektsida som automatiskt renderar projektkort med hjälp av data från GitHub.
 
-Jag började med att bygga upp sidans grundstruktur i HTML och skapa en mobilanpassad layout. Sedan byggde jag vidare med CSS för att få till typografi, färger, mellanrum, gradienter och responsiva brytpunkter. JavaScript används för hamburgermenyn, som gör att menyn kan visas och döljas när användaren klickar på den.
+Projektet har under utvecklingens gång utvecklats från en statisk sida till en modern, asynkron webbapplikation. Fokus har legat på att hålla koden DRY (*Don't Repeat Yourself*) genom att bryta ut logik i återanvändbara ES2024-moduler och använda strukturerad JSON-data för att bygga gränssnittet dynamiskt.
 
-Målet var inte bara att få sidan att likna designen, utan också att göra den begriplig, tillgänglig och anpassningsbar för olika användare och skärmar.
+Målet var inte bara att få sidan att exakt likna designen, utan också att skriva semantisk, feltolerant och fullt tillgänglig kod för alla typer av enheter.
 
 ---
 
 ## Funktioner
 
-- Responsiv layout för mobil, surfplatta och desktop
-- Hamburgermeny som kan visas och döljas med JavaScript
-- Automatisk dark mode baserat på användarens systeminställning
-- CSS-variabler för färger som återanvänds på flera ställen
-- Gradienttext med `linear-gradient` och `background-clip: text`
-- Grid-layout för teknologiikoner och projektkort
-- Flexbox för navigation, introduktion, kort och footern
-- SVG-ikoner med anpassad färg för light och dark mode
-- Tillgänglighetsförbättringar med `aria-label` och korrekt HTML-struktur
-- Publicerad på Netlify
+- **Responsiv layout:** Sömlös anpassning för mobil, surfplatta och desktop via CSS Grid och Flexbox.
+- **Dynamiska projektkort:** Hämtar data från GitHub API och genererar projektkort dynamiskt i realtid med `map()` och *object destructuring* (`name`, `html_url`, `description`).
+- **Återanvändbar CV-generator:** Funktioner som `fetchWorkAndEducation()` läser in JSON-data och bygger upp CV-sektionen programmatiskt istället för med hårdkodad HTML.
+- **Interaktiv hamburgermeny:** En JavaScript-driven meny som lyssnar på klickhändelser och hanterar synlighet på mindre skärmar.
+- **Mörkt läge (Dark Mode) med Toggle:** Stödjer både systeminställningar och en manuell knapp i headern för att växla tema.
+- **Robust felhantering:** Om ett nätverksfel uppstår eller JSON-filen inte kan hämtas, visas en fallback-iframe med ett användarvänligt felmeddelande.
+- **Prestandaoptimerad grafik:** Återanvänder tunga SVG-ikoner via grupp-id:n och `<use>`-element istället för repetitiv kodning.
+- **Automatiserad CI/CD:** Distribuerad live på Netlify med automatisk publicering via GitHub Actions (`static.yml`).
 
 ---
 
@@ -67,14 +64,13 @@ Målet var inte bara att få sidan att likna designen, utan också att göra den
 
 | Teknik | Användning |
 |---|---|
-| HTML5 | Sidstruktur, semantiska element, bilder, länkar och SVG |
-| CSS3 | Layout, typografi, färger, gradienter, animationer och dark mode |
-| Flexbox | Navigation, introduktion, kort, beskrivningar och footern |
-| CSS Grid | Teknologiikoner och projektrutor |
-| Media queries | Responsiva brytpunkter och dark mode |
-| CSS-variabler | Återanvändbara färger för light och dark mode |
-| JavaScript | Hamburgermeny och klickhändelser |
-| Netlify | Publicering och live-distribution |
+| **HTML5** | Semantisk struktur (`<main>`, `<section>`, `<article>`), tillgängliga knappar och optimerade SVG:er. |
+| **CSS3** | Avancerad layout, CSS-variabler, gradienter (`background-clip: text`) och flytande responsivitet. |
+| **Flexbox** | Dynamisk positionering av navigation, introduktion, kortinnehåll och footern. |
+| **CSS Grid** | Rutnätssystem för teknologiikoner och projektkort i desktop-vy. |
+| **JavaScript (ES2024)** | Modulär struktur (`type="module"`), asynkrona API-anrop (`fetch`), array-metoder (`map`) och händelsehantering. |
+| **GitHub API & JSON** | Datakällor för att hålla projekt och CV-innehåll helt dynamiskt. |
+| **Netlify & GitHub Actions** | Automatiserad byggprocess och live-distribution. |
 
 ---
 
@@ -89,14 +85,16 @@ Målet var inte bara att få sidan att likna designen, utan också att göra den
 ├── 4thpage.css
 ├── footer.css
 ├── base.js
+├── replaceChild.js
 └── README.md
 ```
 
-- `index.html` innehåller sidans struktur, innehåll, SVG-ikoner och länkar.
-- `base.css` innehåller globala variabler, grundstilar, navigation, introduktion och dark mode.
-- `2ndpage.css`, `3rdpage.css` och `4thpage.css` innehåller stilar för respektive sida.
-- `footer.css` innehåller stilar för footern.
-- `base.js` hanterar hamburgermenyn.
+- `index.html` innehåller sidans grundstruktur, globala SVG-definitioner och modullänkningar.
+- `base.css` hanterar globala variabler, grundstilar, mörkt läge och den gemensamma headern/navigationen.
+- `2ndpage.css`, `3rdpage.css` och `4thpage.css` separerar stilarna för de olika sektionerna.
+- `footer.css` innehåller specifika stilar och gradienter för footern.
+- `base.js` agerar huvudmodul (`type="module"`) som hanterar asynkron laddning, hamburgermenyn och initierar CV- och projektgenereringen.
+- `replaceChild.js` är en utbruten, renodlad hjälpmodul för att effektivt uppdatera och rensa DOM-element.
 
 ---
 
@@ -104,7 +102,7 @@ Målet var inte bara att få sidan att likna designen, utan också att göra den
 
 Jag använde en kombination av Flexbox och Grid. Grid användes främst för större layouter, till exempel teknologiikoner och projektrutor, där innehållet behövde ligga i tydliga rader och kolumner. Flexbox användes för element som behövde anpassa sig mer dynamiskt, till exempel navigation, introduktion, kort och beskrivningar.
 
-På små skärmar ligger mycket innehåll i kolumn. När skärmen blir bredare ändras layouten till rader, marginaler och storlekar justeras och vissa element visas eller döljs. Navigationens hamburgermeny är till exempel dold på större skärmar, medan menylänkarna visas i en rad.
+Under projektets gång strukturerades mobil- och desktop-layouterna om. Grid implementerades på sida 2 istället för enbart Flexbox, och sektioner gjordes helskärmstäckande (`vh`) för en mer polerad och modern stil. Brytpunkterna valdes utifrån när layouten började se trång eller trasig ut, och element döljs eller expanderas baserat på tillgänglig bredd.
 
 ```css
 @media (min-width: 860px) {
@@ -124,13 +122,11 @@ På små skärmar ligger mycket innehåll i kolumn. När skärmen blir bredare �
 }
 ```
 
-Brytpunkterna valde jag utifrån när layouten började se trång eller trasig ut, snarare än att bara använda standardvärden. Jag testade genom att dra i webbläsarens fönster och justerade när element började hamna fel eller bli för små.
-
 ---
 
 ## Dark mode
 
-Dark mode aktiveras automatiskt om användarens operativsystem eller webbläsare är inställt på mörkt läge. Jag använde CSS-variabler i `:root` för att kunna byta färger centralt istället för att ändra varje element separat.
+Dark mode aktiveras både automatiskt baserat på användarens systeminställning (`prefers-color-scheme`) och manuellt via en dedikerad knapp i headern. Färghanteringen styrs centralt via CSS-variabler i `:root`.
 
 ```css
 :root {
@@ -148,103 +144,42 @@ Dark mode aktiveras automatiskt om användarens operativsystem eller webbläsare
 }
 ```
 
-Färgerna används sedan med `var()`:
-
-```css
-body {
-  background-color: var(--background);
-  color: var(--text);
-}
-```
-
-För vissa enkla svartvita SVG-ikoner använde jag även `filter: invert(1)` i dark mode. Det var ett praktiskt sätt att få ikoner att byta från mörka till ljusa utan att behöva bygga om SVG-filerna.
+För att hantera grafik i mörkt läge gjordes specifika anpassningar:
+1. **SVG-invertering:** Enkla, svarta ikoner (som kalkylator-ikonerna på sida 2) inverteras med `filter: invert(1)` när mörkt läge är aktivt.
+2. **Dynamiska variabler:** Rubriker (`h2`) och projektkort skiftar färg sömlöst genom att lyssna på det aktiva temat.
 
 ---
 
 ## Tillgänglighet
-<img width="700" height="182" alt="image" src="https://github.com/user-attachments/assets/62ab973a-ff5c-4129-9445-f661be37bdb4" />
-Jag använde Lighthouse, WCAG Contrast Checker och W3C-validatorn för att testa och förbättra sidan.
 
-Lighthouse påpekade bland annat att SVG-ikonerna behövde tillgängliga namn. Eftersom SVG inte använder `alt` på samma sätt som `<img>`, lärde jag mig att använda `role="img"` och `aria-label`:
-<img width="1123" height="640" alt="image" src="https://github.com/user-attachments/assets/5bf6d306-810e-4768-b6b8-05826bdd66a3" />
+<img width="700" height="182" alt="image" src="https://github.com" />
 
-```html
-<svg class="github" role="img" aria-label="GitHub" viewBox="0 0 24 24">
-  <!-- SVG-innehåll -->
-</svg>
-```
+Jag använde Lighthouse, WCAG Contrast Checker och W3C-validatorn för att löpande testa och tillgänglighetssäkra sidan.
 
-Jag kontrollerade också färgkontraster med WCAG Contrast Checker och justerade flera färger så att kontrasten blev minst 4.5:1. Det gällde särskilt text, ikoner och färger i dark mode.
+### Interaktivitet och Semantik
+Lighthouse påpekade inledningsvis att sidan saknade en tydlig rubrikstruktur och att interaktiva element behövde korrekta roller. För att åtgärda detta gjordes flera viktiga förändringar:
+- **Semantiska element:** Generiska `div`-behållare på sida 2 och 4 strukturerades om till semantiska `<article>`- och listelement. En `<h1>`-rubrik lades till på första sidan för att förankra dokumentets hierarki korrekt.
+- **Från länkar till knappar:** Hamburgermenyn ändrades från att vara ett felaktigt länk-element (`<a>`) till en semantiskt korrekt `<button>` utrustad med `aria-label`.
+- **Tangentbordsnavigering:** Implementerade `:focus-visible` för att säkerställa att en tydlig fokusindikator visas när en användare navigerar på webbplatsen med enbart tangentbord.
 
-Den största utmaningen var W3C-validatorn. Jag började med ungefär 130 errors och fick bland annat:
+### Kontraster och Validering
+Färgkontraster kontrollerades noggrant. Flera nyanser av blått, grönt samt färger i footern justerades för att garantera att de möter WCAG-kravet på minst 4.5:1 mot bakgrunden.
 
-- Byta ut felaktiga `<text>`-element mot `<span>`
-- Fixa felaktig nestning av HTML-element
-- Ersätta `alt` på SVG-element med `aria-label`
-- Se till att element som `<p>` inte innehöll blockelement
-
-Arbetet visade hur viktigt det är att skriva korrekt och semantisk HTML från början, istället för att försöka fixa allt i slutet.
+Den absolut största utmaningen var W3C-validatorn, där projektet inledningsvis flaggade för runt 130 fel. Genom att systematiskt rensa koden lyckades jag åtgärda samtliga fel genom att:
+- Byta ut otillåtna `<text>`-element under `div`-taggar mot korrekta `<span>`-element.
+- Korrigera nestningsfel (se till att blockelement inte ligger inuti paragrafer (`<p>`)).
+- Ersätta felaktiga `alt`-attribut på inline-SVG:er med `role="img"` och `aria-label`.
 
 ---
 
 ## Reflektion
 
 ### Från skiss till kod
+Det var en lärorik utmaning att översätta designskissen till ren kod. Det svåraste var till en början att bevara designens visuella identitet samtidigt som färgerna justerades för att klara de strikta tillgänglighetskraven (WCAG). Textstorlekar, marginaler och profilbildens dimensioner finjusterades i several omgångar (särskilt för mobilvy) för att undvika att gränssnittet kändes trångt eller trasigt.
 
-Det var inte så mycket i skissen som var svårt att översätta direkt till HTML och CSS. Det svåraste var att få till rätt färger jämfört med source-designen, särskilt för vanlig text och paragrafer. Vissa färger såg bra ut men hade för låg kontrast, så jag behövde ändra dem för att följa WCAG.
+Att implementera linjära gradienter i kombination med `background-clip: text` krävde en del efterforskning, men gav logotypen och footern det önskade moderna utseendet.
 
-Gradienten var också utmanande i början. Jag fick googla och läsa för att förstå hur `linear-gradient`, `background-clip: text` och transparent textfärg fungerade tillsammans. När jag väl förstod det kunde jag återanvända tekniken på logotypen och andra textelement.
+### Semantik och JavaScript-arkitektur
+Att gå från att skriva rent statisk HTML till att bygga modulär kod har förändrat hur jag ser på projektstruktur. Genom att introduceras för ES2024-moduler (`type="module"`) lärde jag mig vikten av separation av logik. Att flytta ut DOM-manipulation till en egen fil (`replaceChild.js`) och låta JavaScript läsa in CV-innehåll från JSON-filer har gjort hela kodbasen mycket mer skalbar och lättunderhållen. 
 
-### Semantik
-
-I början var jag osäker på vilka HTML-element jag skulle använda för de olika delarna av sidorna. Eftersom ingen av sidorna innehöll innehåll som passade i en `<aside>`, använde jag `<section>` för det mesta. Jag använde också korresponderande element där det var möjligt, till exempel `<a>` för länkar och `<header>`, `<main>` samt `<footer>` för sidans huvuddelar.
-
-Jag lärde mig att semantiska element gör koden tydligare för både utvecklare och hjälpmedel. `<div>` använde jag när jag bara behövde en behållare för layout eller styling.
-
-### Layout
-
-Jag tycker att en blandning av Flexbox och Grid fungerar bäst. Jag använde mest Grid för förälderelement, särskilt på sida 3 och 4, eftersom jag ville att innehållet skulle hålla sig i rader och kolumner. Sedan använde jag Flexbox för barnen inuti griden, eftersom jag ville att de skulle kunna krympa, flytta sig eller centreras beroende på skärmens bredd.
-
-På navigationen valde jag Flexbox eftersom den behöver anpassa sig mycket efter skärmens bredd. Jag använde media queries för att ändra flex-riktning, dölja hamburgermenyn på större skärmar och justera mellanrum och storlekar. Brytpunkterna lade jag där layouten började se trasig eller för trång ut, till exempel runt 400px, 600px och 860px.
-
-### Tillgänglighet
-
-Jag använde Lighthouse för att testa sidan. Där fick jag tips om att lägga till labels för mina SVG-ikoner. Eftersom SVG-element inte använder `alt` på samma sätt som `<img>`, lärde jag mig att använda `role="img"` och `aria-label`.
-
-Jag använde också WCAG Contrast Checker för att kolla färgkontrasten. Jag anpassade flera färger så att kontrasten blev minst 4.5:1, vilket gjorde texten tydligare och bättre anpassad för personer med nedsatt syn.
-
-Den största utmaningen var W3C-validatorn. Jag började med ungefär 130 errors och fick ändra många `<text>`-element till `<span>`, fixa felaktig nestning och byta `alt` till `aria-label` på SVG:er. Jag lyckades bli av med de flesta felen, men det visade mig hur viktigt det är att skriva korrekt och semantisk HTML från början.
-
-### Användbarhet
-
-Jag känner igen flera UX- och UI-principer i Pawans design. Sidan har en tydlig hierarki med stor rubrik, kort introduktion och tydliga sektioner. Färgerna och gradienten används för att skapa visuell igenkänning, medan mycket vit yta gör att innehållet inte känns överbelastat.
-
-Navigationen är också enkel och återanvänds på flera sidor, vilket gör det lättare att förstå var man befinner sig. Om jag hade gjort något annorlunda skulle jag kanske ha gjort navigationen ännu tydligare på mobil, till exempel med en riktig hamburgermeny som öppnar och stänger länkarna. Jag skulle också ha lagt mer fokus på konsekventa marginaler och avstånd mellan sektionerna.
-
----
-
-## Vad jag skulle förbättra
-
-- [ ] Göra hamburgermenyn mer komplett med öppnings- och stängningsfunktion
-- [ ] Lägga till en knapp för att manuellt växla mellan light och dark mode
-- [ ] Spara tema-val i `localStorage`
-- [ ] Rensa upp och strukturera media queries
-- [ ] Optimera profilbilden för bättre prestanda
-- [ ] Använda konsekventa engelska klassnamn
-- [ ] Lägga till fler interaktiva detaljer, till exempel hover-effekter och animationer
-
----
-
-## AI-verktyg
-
-Jag har inte använt AI särskilt mycket under projektet förutom till att snygga till denna readme, eftersom jag ogillar “vibe coding”. Jag tycker att det ofta tar mycket tid att skriva bra prompts, och när det handlar om grunderna är det bättre att skriva koden själv, testa och felsöka steg för steg.
-
-Jag har dock använt AI som stöd för att förklara koncept, till exempel CSS-variabler, dark mode, `order` och SVG-tillgänglighet. Jag ändrade alltid det genererade svaret så att det passade min egen kod, mina erfarenheter och min skrivstil.
-
----
-
-## Publicering
-
-Webbplatsen är publicerad på Netlify:
-
-[https://u01-ludvig-portfolio.netlify.app/](https://u01-ludvig-portfolio.netlify.app/)
+Arbetet har visat hur viktigt det är att skriva välstrukturerad, semantisk HTML från allra första början, snarare än att försöka lappa ihop tillgänglighet och valideringsfel i slutet av projektet.

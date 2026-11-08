@@ -84,11 +84,11 @@ fetchData(workEduURL)
 //Project cards
 const gitHubURL="https://api.github.com/users/ludvigpalacios/repos";
 fetchData(gitHubURL) 
-.then(workAndEducation =>{
-    if(workAndEducation){
+.then(gitHubArray =>{
+    if(gitHubArray){
         //Start function
-        console.log(workAndEducation)
-        generateProjectTiles(workAndEducation);
+        console.log(gitHubArray)
+        generateProjectTiles(gitHubArray);
 
     }
 }).catch(error =>{

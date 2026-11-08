@@ -1,0 +1,107 @@
+3a5a702 Fixed my profile photo dimensions to be more visible in mobile layout
+b125aaf W3 Validator fix
+57e206c Uppdaterade knappen med header
+7671e9f La till en knapp som användaren kan klicka för att toggla mellan dark mode
+374b586 Bugfixar och implemetering av funktionen i koden
+106aa5e Skapade en funktion som genererar projekttavlar med hjälp av informationen från github repo arrayen 1. Tar in arrayen 2. Rensar bort containern från all innehåll 3. Vi använder map och object deconstructing för att hämta fram "name" "html_url" och "description" från varje object repo genom att matcha namn med det i github arrayen 4. Vi lägger till också "i" för att uppdatera bilderna med den nästa bilden vid varje iteration
+e056874 Made the fetchWorkAndEducatiion function reusable
+f3eeb7c Förra commit
+5fc7c41 Skapade en ny function som genererar mitt CV istället för att fylla in den
+bd3df6d Flytta ut replaceChild() till sin egen fil som importeras till base.js och anropas fram
+33a675f Gör om query elementerna till objects under "elements" som kan skickas vidare till en funktion utan at behöva skriva in alla namn
+2d4b7ef Flyttar över replaceChild funktionen till sin egen fil
+ef0519c La till en iframe som visas upp om ett fel uppstår när json filen hämtas
+4bbf0a3 Gjorde om base.js till ES2024 med type="modular", packade upp json promise till en array, och använde den för att ersätta hela job listan med jsons innehåll
+c5824b3 Skapade en separat ES2024 funktion som hämtar json filen när HTML har laddat, letar efter fel och exporterar den den som response
+3fc5ac8 tog bort mellanslag på job title
+1067e51 Uppdaterade HTML med nya id attributer
+bff23f7 created two objects "work" and "education" with further objects "job title" "company name" "date and "fulltime" for each job title.
+d1f3ddc Ladde till focus-visible för att visa tydligt var användaren ligger i vid navigering med tangentbord
+5e0dfa8 1. Restructured all divs in page 2 and 4 into articles, lists and implemented 2. Implemented grid into page 2 instead of flex
+05904d3 1. Removed all other 4 headers 2. Made it so that the header always stayed on top, changed margins to padding and added a background for style 3. Put all sections under main, and put the main page under "section page 1" 4.  Made it so that each page fills the entire screen for style 5. Added h1 in page 1 and adjusted its font size 6. Corrected the footer font size according to the changes above
+d69ce80 1. Turned the hamburger från "anchor" till "<buttons>" med its aria label and href attribute names.
+9dac769 Merge branch 'main' of https://github.com/ludvigpalacios/u01-ludvig
+142e6f9 Spacing
+58130e6 Added gradient when hovering over logo icons, not fully finished thought
+98539ec Replaced the copy and paste of SVG to using group ids and <use> element for optimization
+06a3bf4 Update README.md
+5aeb03f Create static.yml
+bf31cd6 Update README.md
+e1af41a Update README.md
+80e8a72 Update README.md
+ea8ee2f Update README.md
+c6e0c87 Create Reflektioner.md
+6b9f765 Update README.md
+e1f83af Update README.md
+53ee340 Added more context to readme text
+d0319dd Made the menu button interactive: Created js file, linked it to html, grabbed all hamburger elements by class using querySelectorAll, and all hidden classes, used a foreach to make all hamburger menus listen for click, and run a function that shows the menu by removing hidden element, then saving returning global variable 'isHidden' to true so that if it the user clicks again it wil instead add the class hidden to hide the menu.
+c8f3147 fixed alignement of profile with self-align
+de403be Ladde till netlify länken i readme
+9b5667f Changed index to base.css
+cb9b076 Skrev i README vad jag gjorde, samt exporterade mina commits  beskrivningar i en .txt
+a6ccb08 renamed index.css to base.css
+0ea3f9f adjusted intro class margin, adjusted min width, adjusted margins and added justify contents and removed margins for the children in header, changed some colors to better match WCAG
+95c4f3e changed text styles to span
+61919ea adjusted hidden to hide the hamburger menu to new max width
+d568193 moved copyright, special-text, and its media query with linear gradient to index css instead
+4a8754a moved it into footer cs instead, changed span to its own classes
+420131f removed fixed font weights and font size in html for footer
+0b53224 Fixed alignment of svgs in page 2, adjusted margins
+ac64405 Fixed all W3 accesibility errors
+161164c Fixing W3 validation errors, replaced text to span when under a div, changed alt to aria-label inside an svg
+756a381 Made flex direction to column by default and added a media query when there was enough space for row for 2nd pages left side
+6e59427 Adjusted 4th page margins more alike source reference
+6ce7154 Adjusted rem depending on the resolution, additional margin adjustment
+ec772bd Adjusted icons in hamburger-meny accoring to WCAG contrasts
+cdb5606 Adjusted the color of the footer and hamburger according for contrast WCAG
+8044af1 Changed icons in page 2 to follow WCAG
+649965d Modified and changed every calculator svg inside page 2 to later invert its color when dark mode
+21017f9 Changed project tiles background to source color, adjusted applied color of blue to follow WCAG
+1ae4ddd Make greensock and github logo for page 2 inline, changed colors for darkmode
+970262b Adjusted text color to represent source more accurately, starting to optimize code
+c0acf20 Created a variable for h2 where it changes color when dark mode
+05978a1 Added first basic dark mode, when someone has dark mode on their computer, needs polishing
+c415cd7 Added copyright text to footer
+ee3bd2b Added reference color to footer text, adjusted font size and adjusted to a media query, added flex
+e2e19cf Adjusted the 4th page grid to fit its content, adjust margins, adjusted, adjusted font-weights, added shadows to all tiles, added border radious to all tiles, reordered tile description section
+050d09d Adjusted the grid to reference point, adjusted margin to reference point
+feff189 Adjust the logotype1 logos margin
+1b8c7ed Changed certain texts to h2, added a media query that changes its color reaching a certain width
+83cc5ce Wrapped section 3 contents under a div class, adjusted the icons so that it created more rows, adjusted its size relative to the root element
+8c19bb1 Fixed copyright text so that it appeared after a certain width, and added flex to main element
+6522037 Adjusted 2nd page for desktop mode
+c0124cc Kopierade header element till alla andra sidor
+f1a6d85 Replaced all navigation bars with the one from header, added hidden class to hide the hamburger menu and logos after certain width.
+2e9b304 Yttligar justering av copyright texten på första sidan
+3685618 Wrappade introductionen under en div, lade till fler media queries så den såg expanderade när man ökade width, justerade profilbilden så den blev större
+2d753c5 Ändrade navigationslogo gap, och ordning när vid uppnådd width
+9c9197f - changed the hamburgare meny color to grey and reduced it sizes. - Adjusted media query breakpoint to a width where it doesn't look broken
+5ad9468 Adjusting the navigation bar for desktop mode: Added a media query for 400px, changed flex direction for all inner flex elements, added margin auto for the hamburgare-meny
+563316d Centrerar texten för footer
+b3131eb återanvänder special text klassen för gradient, skapar footer site med flex
+dc17e33 Convertd project tile to flex but kept inside a grid
+8436eeb La till backgrunderna i SVG istället
+d3479a6 Made the icons grid shrinkable
+7960dc1 Skapade en grid area och sorterade den för mobil layouten
+d714dcf Inbäddade svg filerna som img under en klass med respektive alt och klasser
+d5851a5 Ändrade namn på alla svg
+d916cd4 Added copyright text with gradient in the previous commit, previous commit is the commit now
+b1aac9c Created the page section for the third page
+6cac715 Kopierade job-description flera gånger
+c77d935 La till Display flex till sida 2, samt en text centrerad till den gröna SVG
+a1300f8 Skapade ett ny CSS för andra sidan, la till display flex för att använda space between
+e0bfb90 Split the second page into two classes to apply display flex
+8a348cf La till flera text-beskrivningar med tillhörnde SVG ikoner
+2a2e1ca Prövar att omorganisera varje sida under en element
+356e05e La till classer till svg
+89c135e La till charset till utf-8 samt en viewport i head, la till 👋 emojin i introduction
+7ecb078 Nestade hamburger under anchor elementet med ett referens till #0
+5dc5b42 La till 'alt' beskrivning til profilbilden, samt en title i <head>
+d4a593f La till margins mellan header, introduction, och profilbilden
+56de65c Tog bort container classen
+00869eb Hamburgare: Tog bort onödig kod, centrerade den och använde gap istället
+a09a146 La till profilbilden och svg filerna
+8caf093 Stylade introduktionen samt la till profilbild och bakgrundsgradien
+dbd418a Added SVG from figma, adjusted size in css and centered
+c77925c Gör mallen för navigationen med flex, samt gradient
+6224c12 Initial commit
