@@ -154,7 +154,7 @@ header{
     }
 }
 
-.hamburgare div{
+.hamburgare span{
     height:0.3rem;
     /*Creating a var for the hamburger menu */ 
     background-color: var(--hamburger);
