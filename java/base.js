@@ -1,6 +1,7 @@
 //Import functions
 import { fetchData} from "./fetchJSON.js";
-import {replaceChild} from "./replaceChild.js";
+//import {replaceChild} from "./replaceChild.js";
+/*replaceChild is no longer used, instead we create new elements */
 import { generateCards, generateProjectTiles} from './domUTILS.js';
 import {toggleDarkMode} from "./darkMode.js";
 
