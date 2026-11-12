@@ -1,185 +1,92 @@
-# u01-ludvig
+# Dynamisk Portfolio – u02
 
-[![HTML5](https://shields.io)](#)
-[![CSS3](https://shields.io)](#)
-[![JavaScript](https://shields.io)](#)
-[![Netlify](https://shields.io)](https://netlify.app)
-
-**Live-sida:** [https://netlify.app](https://netlify.app)
-
-https://github.io
-<img width="1767" height="891" alt="image" src="https://github.com" />
-
-En responsiv och dynamisk portfolio-webbplats byggd med HTML, CSS och modern JavaScript (ES2024). Projektet är en översättning av en designskiss till kod, med stort fokus på modulär kodstruktur, mörkt läge, tillgänglighet (WCAG) och robust felhantering.
-
-```mermaid
-flowchart LR
-    A[Designskiss] --> B[HTML-struktur]
-    B --> C[CSS-layout]
-    C --> D[Responsiv design]
-    D --> E[Tillgänglighet & WCAG]
-    E --> F[Dynamisk data & Moduler]
-    F --> G[Dark mode med Toggle]
-    G --> H[Test och validering]
-    H --> I[Publicering på Netlify]
-```
-
-## Innehåll
-
-- [Om projektet](#om-projektet)
-- [Funktioner](#funktioner)
-- [Tekniker](#tekniker)
-- [Projektstruktur](#projektstruktur)
-- [Responsiv design](#responsiv-design)
-- [Dark mode](#dark-mode)
-- [Tillgänglighet](#tillgänglighet)
-- [Reflektion](#reflektion)
-
----
-
-## Om projektet
-
-Portfolio-sidan består av flera sektioner: en introduktion med profilbild, en CV-sida med dynamiskt genererade arbetsbeskrivningar och utbildningar, en teknologisektion med optimerade SVG-ikoner samt en projektsida som automatiskt renderar projektkort med hjälp av data från GitHub.
-
-Projektet har under utvecklingens gång utvecklats från en statisk sida till en modern, asynkron webbapplikation. Fokus har legat på att hålla koden DRY (*Don't Repeat Yourself*) genom att bryta ut logik i återanvändbara ES2024-moduler och använda strukturerad JSON-data för att bygga gränssnittet dynamiskt.
-
-Målet var inte bara att få sidan att exakt likna designen, utan också att skriva semantisk, feltolerant och fullt tillgänglig kod för alla typer av enheter.
-
----
+En interaktiv och responsiv portfolio-webbplats byggd vidare på grunden från u01. Sidan hämtar projekt dynamiskt från GitHubs REST API samt CV-data (arbetslivserfarenhet och utbildning) från en lokal JSON-fil, och inkluderar stöd för ljust och mörkt tema.
 
 ## Funktioner
-
-- **Responsiv layout:** Sömlös anpassning för mobil, surfplatta och desktop via CSS Grid och Flexbox.
-- **Dynamiska projektkort:** Hämtar data från GitHub API och genererar projektkort dynamiskt i realtid med `map()` och *object destructuring* (`name`, `html_url`, `description`).
-- **Återanvändbar CV-generator:** Funktioner som `fetchWorkAndEducation()` läser in JSON-data och bygger upp CV-sektionen programmatiskt istället för med hårdkodad HTML.
-- **Interaktiv hamburgermeny:** En JavaScript-driven meny som lyssnar på klickhändelser och hanterar synlighet på mindre skärmar.
-- **Mörkt läge (Dark Mode) med Toggle:** Stödjer både systeminställningar och en manuell knapp i headern för att växla tema.
-- **Robust felhantering:** Om ett nätverksfel uppstår eller JSON-filen inte kan hämtas, visas en fallback-iframe med ett användarvänligt felmeddelande.
-- **Prestandaoptimerad grafik:** Återanvänder tunga SVG-ikoner via grupp-id:n och `<use>`-element istället för repetitiv kodning.
-- **Automatiserad CI/CD:** Distribuerad live på Netlify med automatisk publicering via GitHub Actions (`static.yml`).
+* **Dynamisk projekthämtning:** Hämtar publika repositories via GitHub REST API (`https://api.github.com/users/ludvigpalacios/repos`) och renderar projektkort med roterande bakgrundsbilder, beskrivning och direktlänk till koden.
+* **Dynamiskt CV:** Läser in arbetslivserfarenhet och utbildning från en lokal JSON-fil och bygger upp korten i DOM:en.
+* **Ljust & mörkt läge:** Temaväxlare baserad på CSS-variabler (`data-theme`) som respekterar användarens systeminställningar (`prefers-color-scheme`) och sparar valet i `localStorage`.
+* **Modulär JavaScript:** Koden är uppdelad i ES6-moduler (`import`/`export`) för tydlig ansvarsfördelning mellan datahämtning, DOM-rendering och temahantering.
 
 ---
 
-## Tekniker
+## Teknisk reflektion
 
-| Teknik | Användning |
-|---|---|
-| **HTML5** | Semantisk struktur (`<main>`, `<section>`, `<article>`), tillgängliga knappar och optimerade SVG:er. |
-| **CSS3** | Avancerad layout, CSS-variabler, gradienter (`background-clip: text`) och flytande responsivitet. |
-| **Flexbox** | Dynamisk positionering av navigation, introduktion, kortinnehåll och footern. |
-| **CSS Grid** | Rutnätssystem för teknologiikoner och projektkort i desktop-vy. |
-| **JavaScript (ES2024)** | Modulär struktur (`type="module"`), asynkrona API-anrop (`fetch`), array-metoder (`map`) och händelsehantering. |
-| **GitHub API & JSON** | Datakällor för att hålla projekt och CV-innehåll helt dynamiskt. |
-| **Netlify & GitHub Actions** | Automatiserad byggprocess och live-distribution. |
+### 1. Datans väg
+För att förstå datastrukturen testade jag först endpointen `https://api.github.com/users/ludvigpalacios/repos` i Postman. API:et returnerar ett JSON-svar bestående av en array där varje objekt representerar ett repository med egenskaper som `name`, `description` och `html_url`.
+
+**Flödet i koden från anrop till skärm:**
+1. **Asynkron hämtning (`fetchData`):** URL:en skickas till `fetch()`, som initierar ett HTTP GET-anrop och omedelbart returnerar ett `Promise`. Eftersom `fetch` är asynkront blockeras inte huvudtråden – webbläsaren kan fortsätta ladda och rendera HTML, CSS och synkron JavaScript medan nätverksanropet pågår i bakgrunden.
+2. **Validering och parsning:** När svaret anländer kontrolleras `response.ok` (vilket är `true` för HTTP-statuskoder i intervallet 200–299). Om svaret är godkänt anropas `response.json()`, som läser svarsströmmen och parsar JSON-texten till en faktisk JavaScript-array (även detta returnerar ett `Promise`). Eventuella nätverks- eller HTTP-fel fångas upp av `.catch()`.
+3. **Rendering:** När promiset har lösts ut i `.then()` skickas arrayen vidare till `generateProjectTiles()`, som omvandlar datan till HTML-element i DOM:en så att projekten blir synliga för besökaren.
 
 ---
 
-## Projektstruktur
+### 2. Två datakällor
+Även om både CV-datan (lokal JSON-fil) och projektdata (GitHub API) hämtas via samma `fetchData()`-funktion, skiljer de sig åt ur ett tekniskt och arkitektoniskt perspektiv:
 
-```text
-.
-├── index.html
-├── base.css
-├── 2ndpage.css
-├── 3rdpage.css
-├── 4thpage.css
-├── footer.css
-├── base.js
-├── replaceChild.js
-└── README.md
-```
-
-- `index.html` innehåller sidans grundstruktur, globala SVG-definitioner och modullänkningar.
-- `base.css` hanterar globala variabler, grundstilar, mörkt läge och den gemensamma headern/navigationen.
-- `2ndpage.css`, `3rdpage.css` och `4thpage.css` separerar stilarna för de olika sektionerna.
-- `footer.css` innehåller specifika stilar och gradienter för footern.
-- `base.js` agerar huvudmodul (`type="module"`) som hanterar asynkron laddning, hamburgermenyn och initierar CV- och projektgenereringen.
-- `replaceChild.js` är en utbruten, renodlad hjälpmodul för att effektivt uppdatera och rensa DOM-element.
+* **Lokal JSON-fil (CV):** Filen ligger på samma server/ursprung som resten av webbplatsen och har en fast struktur som jag själv har skrivit och kontrollerar. Risken för nätverksfel, CORS-problem eller oväntade datatyper är minimal, och svaret kommer i princip omedelbart.
+* **Externt REST API (GitHub):** Anropet går över internet till en tredjepartsserver som jag inte styr över. Det innebär fördröjning (latens), risk för att API:et ligger nere, rate-limiting (HTTP 403/429) eller att enskilda fält saknar värde (t.ex. att `description` är `null`). Därför krävs defensiv programmering med statuskontroll (`if (!response.ok)`), felhantering via `.catch()` samt fallback-värden i koden (t.ex. en standardtext om en repo-beskrivning saknas).
 
 ---
 
-## Responsiv design
+### 3. DOM och händelser
+**Hur sidan byggs om när datan kommit in:**
+När arrayen från GitHub API har tagits emot i `generateProjectTiles()` hämtas först mål-containern via `document.querySelector(".project-tiles")` och töms med `container.innerHTML = ""` för att rensa bort eventuella testkort och undvika dubbletter. Därefter itererar koden igenom arrayen och plockar ut `name`, `description` och `html_url` med object destructuring. 
 
-Jag använde en kombination av Flexbox och Grid. Grid användes främst för större layouter, till exempel teknologiikoner och projektrutor, där innehållet behövde ligga i tydliga rader och kolumner. Flexbox användes för element som behövde anpassa sig mer dynamiskt, till exempel navigation, introduktion, kort och beskrivningar.
+För varje objekt skapas ett nytt `<article>`-element med `document.createElement("article")`, dess inre HTML byggs upp via template literals i `.innerHTML`, och elementet fästs slutligen i DOM-trädet med `container.appendChild(article)`. Att bygga ett element per objekt och appenda det gör att varje projektkort blir en isolerad, självständig nod i DOM:en.
 
-Under projektets gång strukturerades mobil- och desktop-layouterna om. Grid implementerades på sida 2 istället för enbart Flexbox, och sektioner gjordes helskärmstäckande (`vh`) för en mer polerad och modern stil. Brytpunkterna valdes utifrån när layouten började se trång eller trasig ut, och element döljs eller expanderas baserat på tillgänglig bredd.
-
-```css
-@media (min-width: 860px) {
-  header {
-    flex-direction: row;
-    flex-wrap: nowrap;
-  }
-
-  .hamburgare div {
-    display: none;
-  }
-
-  .hamburgare-meny {
-    flex-direction: row;
-    margin-left: auto;
-  }
-}
-```
+**Vilka händelser som lyssnas på och varför:**
+* **`DOMContentLoaded` på `document`:** Koden lyssnar på när HTML-dokumentet har laddats klart innan datahämtningen och DOM-manipuleringen startar. Detta garanterar att behållare som `.project-tiles` faktiskt existerar i DOM:en när JavaScript försöker hämta dem, vilket förhindrar `null`-fel.
+* **`click` på `#theme-toggle`:** Lyssnar direkt på temaknappen eftersom den är ett statiskt element som finns på sidan från start.
+* **Ingen klick-lyssnare på `.project-tiles`:** Själva projektcontainern har ingen event-lyssnare kopplad till sig eftersom navigeringen till respektive GitHub-repo hanteras nativt av webbläsaren via vanliga semantiska `<a>`-taggar (`href="${html_url}"`), vilket både är enklare och bättre för tillgängligheten.
 
 ---
 
-## Dark mode
+### 4. Markup du inte skrivit för hand
+För att säkerställa att den dynamiskt genererade HTML-koden håller samma semantiska och tillgänglighetsmässiga kvalitet som min handskrivna kod i u01, utgick jag direkt från den färdiga och validerade HTML-strukturen från u01 som mall inuti mina template literals.
 
-Dark mode aktiveras både automatiskt baserat på användarens systeminställning (`prefers-color-scheme`) och manuellt via en dedikerad knapp i headern. Färghanteringen styrs centralt via CSS-variabler i `:root`.
-
-```css
-:root {
-  --background: #ffffff;
-  --text: #1f1f1f;
-  --muted-text: #5c5c5c;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #121212;
-    --text: #f1f1f1;
-    --muted-text: #d6d6d6;
-  }
-}
-```
-
-För att hantera grafik i mörkt läge gjordes specifika anpassningar:
-1. **SVG-invertering:** Enkla, svarta ikoner (som kalkylator-ikonerna på sida 2) inverteras med `filter: invert(1)` när mörkt läge är aktivt.
-2. **Dynamiska variabler:** Rubriker (`h2`) och projektkort skiftar färg sömlöst genom att lyssna på det aktiva temat.
+Genom att bevara exakt samma elementhierarki och attribut – som semantiska `<article>`-, `<nav>`- och `<h3>`-taggar samt `aria-label` och `alt`-texter på ikoner och bilder – och enbart byta ut textinnehållet mot JavaScript-variabler, undvek jag slarvfel i taggstrukturen och säkerställde att både skärmläsare och CSS-selektorer fungerar identiskt med originaldesignen.
 
 ---
 
-## Tillgänglighet
+### 5. Temaväxlingen
+**Lösning med CSS-variabler:**
+Jag definierade hela färgpaletten som CSS custom properties (t.ex. `--background` och `--text-color`) under `:root` för det ljusa standardläget, och skapade sedan ett regelblock för `[data-theme="dark"]` där samma variabelnamn skrivs över med mörka färgvärden. 
 
-<img width="700" height="182" alt="image" src="https://github.com" />
+Vid sidladdning kontrollerar JavaScript om det finns ett sparat val i `localStorage`, och faller annars tillbaka på användarens operativsysteminställning via `window.matchMedia('(prefers-color-scheme: dark)')`. När användaren klickar på temaknappen ändras enbart attributet `data-theme` på `<html>`-elementet (`document.documentElement`) mellan `'light'` och `'dark'`, samtidigt som valet sparas i `localStorage`. Eftersom CSS-variabler ärvs nedåt i DOM-trädet (cascade) räknar webbläsaren automatiskt om färgerna på alla element som använder `var(--...)`.
 
-Jag använde Lighthouse, WCAG Contrast Checker och W3C-validatorn för att löpande testa och tillgänglighetssäkra sidan.
-
-### Interaktivitet och Semantik
-Lighthouse påpekade inledningsvis att sidan saknade en tydlig rubrikstruktur och att interaktiva element behövde korrekta roller. För att åtgärda detta gjordes flera viktiga förändringar:
-- **Semantiska element:** Generiska `div`-behållare på sida 2 och 4 strukturerades om till semantiska `<article>`- och listelement. En `<h1>`-rubrik lades till på första sidan för att förankra dokumentets hierarki korrekt.
-- **Från länkar till knappar:** Hamburgermenyn ändrades från att vara ett felaktigt länk-element (`<a>`) till en semantiskt korrekt `<button>` utrustad med `aria-label`.
-- **Tangentbordsnavigering:** Implementerade `:focus-visible` för att säkerställa att en tydlig fokusindikator visas när en användare navigerar på webbplatsen med enbart tangentbord.
-
-### Kontraster och Validering
-Färgkontraster kontrollerades noggrant. Flera nyanser av blått, grönt samt färger i footern justerades för att garantera att de möter WCAG-kravet på minst 4.5:1 mot bakgrunden.
-
-Den absolut största utmaningen var W3C-validatorn, där projektet inledningsvis flaggade för runt 130 fel. Genom att systematiskt rensa koden lyckades jag åtgärda samtliga fel genom att:
-- Byta ut otillåtna `<text>`-element under `div`-taggar mot korrekta `<span>`-element.
-- Korrigera nestningsfel (se till att blockelement inte ligger inuti paragrafer (`<p>`)).
-- Ersätta felaktiga `alt`-attribut på inline-SVG:er med `role="img"` och `aria-label`.
+**Varför det hade blivit svårare direkt i JavaScript:**
+* **Omfattande DOM-manipulation:** Istället för att ändra ett enda attribut på `<html>` hade jag tvingats hämta alla berörda element med mängder av `querySelectorAll()`-anrop, loopa igenom dem och manuellt skriva över inline-stilar (`element.style...`).
+* **Sämre underhåll (Separation of Concerns):** Färg- och designregler hade blandats in i JavaScript-logiken istället för att ligga samlad i CSS-filen, vilket gör koden svårare att felsöka och uppdatera.
+* **Dynamiskt skapat innehåll:** Kort som renderas i efterhand från API:et eller JSON-filen hade inte fått rätt tema automatiskt utan extra JavaScript-logik, medan CSS-variabler slår igenom omedelbart på alla nya element som läggs till i DOM:en.
 
 ---
 
-## Reflektion
+### 6. När det inte går som tänkt
+* **Om GitHub svarar långsamt:** Eftersom `fetchData()` är asynkron körs inte `generateProjectTiles()` förrän svaret har kommit in. Under väntetiden ser besökaren de ursprungliga hårdkodade testkorten som ligger i `.project-tiles` i HTML-filen (eftersom `container.innerHTML = ""` inte körs förrän datan väl är redo). Sidans övriga funktioner, som navigation och temaväxling, fungerar utan fördröjning.
+* **Om GitHub svarar med fel (t.ex. 404, 403 eller nätverksfel):** Kontrollblocket `if (!response.ok)` kastar ett `Error` som fångas upp i `.catch()`. Där loggas felet i konsolen och funktionen returnerar `null` istället för att krascha applikationen. För besökaren innebär det att inga API-kort ritas ut (och att ett felmeddelande kan visas när `data` kontrolleras vara `null`).
+* **Om GitHub svarar med en tom lista (`[]`):** Anropet räknas som lyckat (`response.ok === true`), så `generateProjectTiles([])` anropas. Containern rensas via `container.innerHTML = ""`, och eftersom loopen körs noll varv förblir projektsektionen helt tom för besökaren. *(Med en enkel `if (githubArray.length === 0)`-kontroll kan man även visa en förklarande text).*
 
-### Från skiss till kod
-Det var en lärorik utmaning att översätta designskissen till ren kod. Det svåraste var till en början att bevara designens visuella identitet samtidigt som färgerna justerades för att klara de strikta tillgänglighetskraven (WCAG). Textstorlekar, marginaler och profilbildens dimensioner finjusterades i several omgångar (särskilt för mobilvy) för att undvika att gränssnittet kändes trångt eller trasigt.
+---
 
-Att implementera linjära gradienter i kombination med `background-clip: text` krävde en del efterforskning, men gav logotypen och footern det önskade moderna utseendet.
+### 7. Styrkor och brister
+**Styrkor:**
+* **Modulär arkitektur:** Uppdelningen i ES6-moduler (`import`/`export`) gav tydlig struktur, undvek krockar i det globala scopet och gjorde det enkelt att återanvända `fetchData` för både API:et och JSON-filen.
+* **Smarta rendering- och temalösningar:** Återanvändningen av semantiska HTML-mallar, modulo-rotationen för bakgrundsbilder (`(i % 6) + 1`) och kopplingen mellan CSS-variabler, `prefers-color-scheme` och `localStorage` fungerade sömlöst tillsammans.
 
-### Semantik och JavaScript-arkitektur
-Att gå från att skriva rent statisk HTML till att bygga modulär kod har förändrat hur jag ser på projektstruktur. Genom att introduceras för ES2024-moduler (`type="module"`) lärde jag mig vikten av separation av logik. Att flytta ut DOM-manipulation till en egen fil (`replaceChild.js`) och låta JavaScript läsa in CV-innehåll från JSON-filer har gjort hela kodbasen mycket mer skalbar och lättunderhållen. 
+**Vad jag skulle bygga om med mer tid:**
+* **Migrera till `async/await`:** I `fetchData` använde jag `.then()`-kedjor. Med mer tid hade jag skrivit om funktionen med `async/await` och `try/catch`, vilket ger en mer linjär, lättläst och lättdebuggad kod när flera asynkrona steg kombineras.
+* **Bättre laddnings- och fel-UX:** Istället för att låta testkort ligga kvar i HTML-koden under laddning hade jag implementerat en laddningsindikator (spinner eller skeleton-kort) samt ett tydligt felmeddelande direkt i DOM:en vid API-fel eller tomma svar.
+* **Städning av mallar och attribut:** Jag hade ersatt duplicerade `id`-attribut inuti kortlooparna med CSS-klasser (eftersom `id` ska vara unikt i HTML) samt lagt till `rel="noopener noreferrer"` på externa länkar med `target="_blank"`.
 
-Arbetet har visat hur viktigt det är att skriva välstrukturerad, semantisk HTML från allra första början, snarare än att försöka lappa ihop tillgänglighet och valideringsfel i slutet av projektet.
+---
+
+### 8. AI-verktyg
+**Hur AI-verktygen användes:**
+* **Inlärning och konceptförståelse:** Jag använde AI som bollplank för att repetera och förstå koncept som ES6-moduler (`import`/`export`) och variabel-scope, samt skapade egna små testexempel för att verifiera hur koden fungerade innan jag skrev den i projektet.
+* **Konvertering av HTML-mallar:** Jag tog hjälp av AI för att strukturera om min befintliga HTML från u01 till template literals för `.innerHTML`, vilket minimerade risken för syntaxfel i långa HTML-strängar.
+* **Problemlösning:** När bakgrundsbilderna tog slut efter de första projektkorten använde jag AI för att hitta en matematisk lösning för att återanvända bilderna cykliskt, vilket resulterade i modulo-beräkningen `(i % 6) + 1`.
+
+**Vad jag ändrade i det som genererades:**
+Jag kopierade aldrig kod rakt av utan anpassade alltid förslagen efter min egen kodbas. Jag bytte ut generiska selektorer, klassnamn och variabelnamn så att de stämde överens med min HTML och CSS från u01, lade till egna fallback-värden för saknad GitHub-data och säkerställde att jag förstod varenda rad innan den lades in i projektet.
